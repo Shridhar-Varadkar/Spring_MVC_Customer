@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org/">
+<head th:include="main.html :: header_fragment">
+<meta charset="ISO-8859-1">
+<title>MVC CRUD</title>
+</head>
+<body>
+ <div th:include="main.html :: navbar_fragment"></div>
+ 
+ <div class="container text-center">
+   <a class="h1 btn btn-primary mt-3" th:href="@{/add-customer}">Add New Customer</a>
+   <table class="table mt-3 table-bordered">
+     <thead>
+       <tr class="h4">
+         <th>ID</th>
+         <th>NAME</th>
+         <th>PHONE</th>
+         <th colspan="2">OPERATION</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr class="h5" th:each="customer: ${all_customers}">
+        <td th:text="${customer.id}" />
+        <td th:text="${customer.name}" />
+        <td th:text="${customer.phone}" />
+        <td> <a class="btn btn-warning mt-3" th:href="@{/edit-customer(id=${customer.id})}">Edit</a> </td>
+        <td> <a class="btn btn-danger mt-3" th:href="@{/delete-customer(id=${customer.id})}" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a> </td>
+    </tr>   
+     </tbody>
+  </table>
+ </div>
+
+ <script th:replace="main.html :: js_fragment"></script>
+
+</body>
+</html>

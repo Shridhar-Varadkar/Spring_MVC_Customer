@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head th:include="main.html :: header_fragment">
+    <meta charset="ISO-8859-1">
+    <title>MVC CRUD - Edit Customer</title>
+</head>
+<body>
+<div th:include="main.html :: navbar_fragment"></div>
+
+<div class="container text-center">
+    <h1>Edit Customer</h1>
+</div>
+
+<!-- Form code -->
+<div class="container">
+    <form class="col-6" th:object="${customer_object}" method="post" th:action="@{/edit-customer}">
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+            <label for="customer_name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="customer_name" th:field="*{name}" th:placeholder="${customer_object.name}" />
+        </div>
+        <div class="mb-3">
+            <label for="customer_phone" class="form-label">Phone:</label>
+            <input type="text" class="form-control" id="customer_phone" th:field="*{phone}" th:placeholder="${customer_object.phone}" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<script th:replace="main.html :: js_fragment"></script>
+
+</body>
+</html>
